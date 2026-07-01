@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import { ChevronLeft, ChevronRight, MapPin, Calendar } from "lucide-react";
 import type { EventItem } from "@/lib/mockdata";
 import { cn } from "@/lib/utils";
 
@@ -79,12 +79,12 @@ export function EventCoverflow({ events, onSelect }: Props) {
                             style={{
                                 transform: `translate(-50%, -50%) translateX(${translate}px) scale(${scale})`,
                                 zIndex,
-                                background: ev.image,
+                                background: ev.image ? `url(${ev.image}) center/cover` : "var(--primary)", // Prevenção caso image seja undefined
                             }}
                         >
                             <div className="relative flex h-full w-full flex-col justify-end rounded-2xl bg-gradient-to-t from-black/70 via-black/20 to-transparent p-5 text-left">
                                 {ev.soldOut && (
-                                    <span className="absolute right-3 top-3 rounded-full bg-destructive px-2.5 py-0.5 text-xs font-semibold text-destructive-foreground text-white shadow">
+                                    <span className="absolute right-3 top-3 rounded-full bg-destructive px-2.5 py-0.5 text-xs font-semibold text-white text-destructive-foreground shadow">
                                         Ingressos Esgotados
                                     </span>
                                 )}
@@ -97,14 +97,14 @@ export function EventCoverflow({ events, onSelect }: Props) {
                     );
                 })}
 
-                {/* Adicionado 'hidden sm:grid' e mantida a sua matemática com 50vw */}
+                {/* Botões de navegação lateral para Desktop */}
                 <button
                     type="button"
                     onClick={() => go(-1)}
                     aria-label="Anterior"
                     className="hidden sm:grid absolute top-1/2 z-20 size-10 -translate-y-1/2 place-items-center rounded-full border border-border bg-card text-foreground shadow-md transition hover:bg-muted"
                     style={{
-                        left: `calc(50% - ${sideOffset + 180}px)`
+                        left: `calc(50% - ${sideOffset + 180}px)`,
                     }}
                 >
                     <ChevronLeft className="size-5" />
@@ -115,7 +115,7 @@ export function EventCoverflow({ events, onSelect }: Props) {
                     aria-label="Próximo"
                     className="hidden sm:grid absolute top-1/2 z-20 size-10 -translate-y-1/2 place-items-center rounded-full border border-border bg-card text-foreground shadow-md transition hover:bg-muted"
                     style={{
-                        right: `calc(50% - ${sideOffset + 180}px)`
+                        right: `calc(50% - ${sideOffset + 180}px)`,
                     }}
                 >
                     <ChevronRight className="size-5" />
@@ -130,8 +130,8 @@ export function EventCoverflow({ events, onSelect }: Props) {
                         aria-label={`Ir para ${i + 1}`}
                         onClick={() => setIndex(i)}
                         className={cn(
-                            "h-2 rounded-full transition-all",
-                            i === index ? "w-6 bg-primary" : "w-2 bg-border hover:bg-muted-foreground/40",
+                            "size-2 rounded-full transition-colors",
+                            i === index ? "bg-primary" : "bg-border hover:bg-muted-foreground/40",
                         )}
                     />
                 ))}
@@ -139,10 +139,12 @@ export function EventCoverflow({ events, onSelect }: Props) {
 
             <div className="mx-auto mt-6 max-w-2xl text-center">
                 <h2 className="text-2xl font-bold text-primary">{center.title}</h2>
-                <div className="mt-2 inline-flex items-center gap-2 text-sm text-muted-foreground">
-                    <MapPin className="size-4 text-accent" />
+                <div className="mt-2 inline-flex items-center justify-center flex-wrap gap-2 text-sm text-muted-foreground">
+                    <MapPin className="size-4 text-primary shrink-0" />
+                    <span>{center.local}</span>
+                    <Calendar className="size-4 text-primary shrink-0 ml-2" />
                     <span>
-                        {center.local} / {center.date}, {center.time}
+                        {center.date}, {center.time}
                     </span>
                 </div>
             </div>

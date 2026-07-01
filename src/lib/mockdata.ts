@@ -18,7 +18,7 @@ export const events: EventItem[] = [
     time: "19h00",
     image: "linear-gradient(135deg, oklch(0.31 0.09 255), oklch(0.45 0.12 260))",
     description:
-      "Cerimônia oficial de abertura da Semana Nacional de Ciência e Tecnologia na Zona Oeste. Conferência magna com pesquisadores convidados e apresentação cultural.",
+      "Cerimônia oficial de abertura da Semana Nacional de Ciência e Tecnologia na Zona Oeste. Conferência magna com pesquisadores convidados e apresentação cultural.Cerimônia oficial de abertura da Semana Nacional de Ciência e Tecnologia na Zona Oeste. Conferência magna com pesquisadores convidados e apresentação cultural.Cerimônia oficial de abertura da Semana Nacional de Ciência e Tecnologia na Zona Oeste. Conferência magna com pesquisadores convidados e apresentação cultural.Cerimônia oficial de abertura da Semana Nacional de Ciência e Tecnologia na Zona Oeste. Conferência magna com pesquisadores convidados e apresentação cultural.Cerimônia oficial de abertura da Semana Nacional de Ciência e Tecnologia na Zona Oeste. Conferência magna com pesquisadores convidados e apresentação cultural.Cerimônia oficial de abertura da Semana Nacional de Ciência e Tecnologia na Zona Oeste. Conferência magna com pesquisadores convidados e apresentação cultural.Cerimônia oficial de abertura da Semana Nacional de Ciência e Tecnologia na Zona Oeste. Conferência magna com pesquisadores convidados e apresentação cultural.Cerimônia oficial de abertura da Semana Nacional de Ciência e Tecnologia na Zona Oeste. Conferência magna com pesquisadores convidados e apresentação cultural.",
   },
   {
     id: "palestra-ia",
@@ -77,22 +77,15 @@ export const mockCertificates = [
   {
     id: "cert-1",
     eventTitle: "Semana de Iniciação Científica 2025",
-    participant: "Maria Costa",
+    participant: "Maria Eduarda Andrade de Carvalho",
     date: "15 de outubro de 2025",
     time: "20 horas",
   },
   {
     id: "cert-2",
     eventTitle: "Workshop de Pesquisa Acadêmica",
-    participant: "Maria Costa",
+    participant: "Maria Eduarda Andrade de Carvalho",
     date: "08 de agosto de 2025",
     time: "8 horas",
-  },
-  {
-    id: "cert-3",
-    eventTitle: "Congresso de Tecnologia UERJ",
-    participant: "Maria Costa",
-    date: "12 de maio de 2025",
-    time: "12 horas",
   },
 ];

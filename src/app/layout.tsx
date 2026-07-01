@@ -4,6 +4,7 @@ import "./globals.css";
 import { AppProvider } from "@/lib/app-store";
 import { Header } from "@/components/header";
 import { AuthModals } from "@/components/authmodals";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,10 @@ export default function RootLayout({
             {children}
           </main>
           <AuthModals />
+
+          {/* Componente que renderiza os Toasts no canto inferior direito */}
+          <Toaster position="bottom-right" richColors />
+
         </AppProvider>
       </body>
     </html>

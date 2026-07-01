@@ -1,7 +1,13 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { useState } from "react";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -18,7 +24,12 @@ export function AuthModals() {
         <Dialog open={open} onOpenChange={(o) => !o && close()}>
             <DialogContent className="sm:max-w-md">
                 {authModal === "prompt" && <PromptView />}
-                {authModal === "login" && <LoginView onSubmit={login} onForgot={() => openAuthModal("forgot")} />}
+                {authModal === "login" && (
+                    <LoginView
+                        onSubmit={login}
+                        onForgot={() => openAuthModal("forgot")}
+                    />
+                )}
                 {authModal === "forgot" && <ForgotView onClose={close} />}
                 {authModal === "register" && <RegisterView onSubmit={register} />}
             </DialogContent>
@@ -31,17 +42,24 @@ function PromptView() {
     return (
         <>
             <DialogHeader>
-                <DialogTitle className="text-center text-xl text-primary">Faça login ou cadastre-se</DialogTitle>
+                <DialogTitle className="text-center text-xl text-primary">
+                    Faça login ou cadastre-se
+                </DialogTitle>
                 <DialogDescription className="text-center">
                     Faça login ou cadastre-se para mais informações.
                 </DialogDescription>
             </DialogHeader>
-            <div className="mt-2 grid grid-cols-2 gap-3">
+            <div className="mt-4 grid grid-cols-2 gap-3">
                 <Button variant="outline" onClick={() => openAuthModal("login")}>
                     Login
                 </Button>
-                <Button onClick={() => openAuthModal("register")}>Cadastrar</Button>
+                <Button onClick={() => openAuthModal("register")}>
+                    Cadastrar
+                </Button>
             </div>
+            <p className="mt-5 text-center text-xs text-muted-foreground">
+                * Professores com e-mail <strong>@uerj.com.br</strong> receberão acesso de gestor automaticamente.
+            </p>
         </>
     );
 }
@@ -52,23 +70,35 @@ function LoginView({ onSubmit, onForgot }: { onSubmit: (email: string) => void; 
 
     return (
         <form
-            onSubmit={(e: FormEvent) => {
+            onSubmit={(e) => {
                 e.preventDefault();
                 onSubmit(email);
             }}
         >
             <DialogHeader>
                 <DialogTitle className="text-primary">Login</DialogTitle>
-                <DialogDescription>Entre com seu email e senha.</DialogDescription>
+                <DialogDescription>Entre com seu e-mail e senha.</DialogDescription>
             </DialogHeader>
-            <div className="mt-4 space-y-3">
+            <div className="mt-4 space-y-4">
                 <div className="space-y-1.5">
-                    <Label htmlFor="login-email">Email</Label>
-                    <Input id="login-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <Label htmlFor="login-email">E-mail</Label>
+                    <Input
+                        id="login-email"
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
                 </div>
                 <div className="space-y-1.5">
                     <Label htmlFor="login-pwd">Senha</Label>
-                    <Input id="login-pwd" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <Input
+                        id="login-pwd"
+                        type="password"
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </div>
                 <button
                     type="button"
@@ -78,7 +108,7 @@ function LoginView({ onSubmit, onForgot }: { onSubmit: (email: string) => void; 
                     Esqueci a senha
                 </button>
             </div>
-            <Button type="submit" className="mt-5 w-full">
+            <Button type="submit" size="lg" className="mt-6 w-full">
                 Continuar
             </Button>
         </form>
@@ -91,10 +121,10 @@ function ForgotView({ onClose }: { onClose: () => void }) {
             <DialogHeader>
                 <DialogTitle className="text-primary">Recuperação de senha</DialogTitle>
                 <DialogDescription>
-                    Link de recuperação enviado para o email. Verifique sua caixa de entrada e a pasta de spam.
+                    Link de recuperação enviado para o e-mail. Verifique sua caixa de entrada e a pasta de spam.
                 </DialogDescription>
             </DialogHeader>
-            <Button className="mt-4 w-full" onClick={onClose}>
+            <Button size="lg" className="mt-4 w-full" onClick={onClose}>
                 Continuar
             </Button>
         </>
@@ -117,7 +147,7 @@ function RegisterView({
 
     return (
         <form
-            onSubmit={(e: FormEvent) => {
+            onSubmit={(e) => {
                 e.preventDefault();
                 onSubmit({ name, email, matricula: noMat ? "" : matricula, cpf });
             }}
@@ -126,15 +156,29 @@ function RegisterView({
                 <DialogTitle className="text-primary">Criar conta</DialogTitle>
                 <DialogDescription>Preencha seus dados para se cadastrar.</DialogDescription>
             </DialogHeader>
-            <div className="mt-4 space-y-3">
+
+            <div className="mt-4 space-y-4">
                 <div className="space-y-1.5">
                     <Label htmlFor="r-name">Nome Completo</Label>
-                    <Input id="r-name" required value={name} onChange={(e) => setName(e.target.value)} />
+                    <Input
+                        id="r-name"
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
                 </div>
+
                 <div className="space-y-1.5">
-                    <Label htmlFor="r-email">Email</Label>
-                    <Input id="r-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <Label htmlFor="r-email">E-mail</Label>
+                    <Input
+                        id="r-email"
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
                 </div>
+
                 <div className="space-y-1.5">
                     <Label htmlFor="r-mat">Matrícula</Label>
                     <Input
@@ -144,12 +188,17 @@ function RegisterView({
                         disabled={noMat}
                         value={matricula}
                         onChange={(e) => setMatricula(numeric(e.target.value))}
+                        className="disabled:opacity-50"
                     />
-                    <label className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
-                        <Checkbox checked={noMat} onCheckedChange={(v) => setNoMat(v === true)} />
+                    <label className="mt-2 flex cursor-pointer items-center gap-2 text-sm text-muted-foreground">
+                        <Checkbox
+                            checked={noMat}
+                            onCheckedChange={(v) => setNoMat(v === true)}
+                        />
                         Não possuo matrícula
                     </label>
                 </div>
+
                 <div className="space-y-1.5">
                     <Label htmlFor="r-cpf">CPF</Label>
                     <Input
@@ -161,12 +210,20 @@ function RegisterView({
                         onChange={(e) => setCpf(numeric(e.target.value))}
                     />
                 </div>
+
                 <div className="space-y-1.5">
                     <Label htmlFor="r-pwd">Senha</Label>
-                    <Input id="r-pwd" type="password" required value={pwd} onChange={(e) => setPwd(e.target.value)} />
+                    <Input
+                        id="r-pwd"
+                        type="password"
+                        required
+                        value={pwd}
+                        onChange={(e) => setPwd(e.target.value)}
+                    />
                 </div>
             </div>
-            <Button type="submit" className="mt-5 w-full">
+
+            <Button type="submit" size="lg" className="mt-6 w-full">
                 Criar conta
             </Button>
         </form>

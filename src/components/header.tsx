@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ProfileDropdown } from "./profiledropdown";
+import { ProfileDropdown } from "./profiledropdown"; // <- Lembrete: confira se o nome do arquivo é minúsculo mesmo ou ProfileDropdown
 import { useApp } from "@/lib/app-store";
 
 export function Header() {
@@ -13,7 +13,6 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
-        {/* Next.js usa href em vez de to */}
         <Link href="/" className="text-xl font-bold tracking-tight text-primary">
           SNCTZO
         </Link>
@@ -29,7 +28,16 @@ export function Header() {
         <div className="ml-auto flex items-center gap-2 sm:gap-4">
           {user ? (
             <>
-              {/* Next.js usa href em vez de to */}
+              {/* Lógica do Lovable resgatada: O link 'Meus Eventos' só aparece para Gestores */}
+              {user.role === "GESTOR" && (
+                <Link
+                  href="/gestor/eventos"
+                  className="hidden text-sm font-medium text-foreground/80 transition-colors hover:text-primary sm:inline"
+                >
+                  Meus Eventos
+                </Link>
+              )}
+
               <Link
                 href="/ingressos"
                 className="hidden text-sm font-medium text-foreground/80 transition-colors hover:text-primary sm:inline"
@@ -55,7 +63,7 @@ export function Header() {
               <button
                 onClick={() => openAuthModal("prompt")}
                 aria-label="Entrar"
-                className="rounded-full"
+                className="rounded-full transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <Avatar className="size-9 border border-border">
                   <AvatarFallback className="bg-muted text-muted-foreground" />
