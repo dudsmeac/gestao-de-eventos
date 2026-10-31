@@ -17,7 +17,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useApp } from "@/lib/app-store";
+import { useApp, type User } from "@/lib/app-store";
 import { toast } from "sonner";
 
 // Componente para campos bloqueados com ícone de cadeado
@@ -31,12 +31,20 @@ function LockedInput({ id, value }: { id: string; value: string }) {
 }
 
 export default function ConfigPage() {
-    const { user, updateUser } = useApp();
-    const router = useRouter();
-    const [name, setName] = useState(user?.name ?? "");
-    const [password, setPassword] = useState("");
+    const { user } = useApp();
 
     if (!user) return <div className="p-10 text-center">Carregando...</div>;
+
+    // `key` recria o formulário quando o usuário muda, garantindo que o estado
+    // inicial (nome) já venha do usuário hidratado do localStorage.
+    return <ConfigForm key={user.email} user={user} />;
+}
+
+function ConfigForm({ user }: { user: User }) {
+    const { updateUser, deleteAccount } = useApp();
+    const router = useRouter();
+    const [name, setName] = useState(user.name);
+    const [password, setPassword] = useState("");
 
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault();
