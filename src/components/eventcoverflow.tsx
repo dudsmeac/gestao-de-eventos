@@ -18,6 +18,7 @@ export function EventCoverflow({ events, onSelect }: Props) {
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
     const total = events.length;
+    if (total === 0) return null;
     const center = events[index];
 
     const go = (d: number) => setIndex((i) => (i + d + total) % total);
@@ -48,7 +49,7 @@ export function EventCoverflow({ events, onSelect }: Props) {
 
     return (
         <div
-            className="w-full"
+            className="w-full overflow-x-clip"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}

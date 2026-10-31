@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Plus, Pencil, Trash2, MapPin, Users } from "lucide-react";
 import { useApp } from "@/lib/app-store";
+import { toBackground } from "@/lib/background";
 import { Button } from "@/components/ui/button";
 import {
     AlertDialog,
@@ -75,9 +76,10 @@ export default function GestorEventosPage() {
                                         <div
                                             className="h-32 w-full bg-cover bg-center"
                                             style={{
-                                                background: ev.image
-                                                    ? `url(${ev.image}) center/cover`
-                                                    : "linear-gradient(135deg, oklch(0.31 0.09 255), oklch(0.45 0.12 260))",
+                                                background: toBackground(
+                                                    ev.image,
+                                                    "linear-gradient(135deg, oklch(0.31 0.09 255), oklch(0.45 0.12 260))"
+                                                ),
                                             }}
                                             aria-hidden
                                         />

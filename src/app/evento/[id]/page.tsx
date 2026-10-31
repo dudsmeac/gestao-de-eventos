@@ -6,6 +6,7 @@ import { MapPin, Check, Calendar, Lock } from "lucide-react";
 import { notFound } from "next/navigation";
 import { events } from "@/lib/mockdata";
 import { useApp } from "@/lib/app-store";
+import { toBackground } from "@/lib/background";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -82,9 +83,7 @@ export default function EventDetails() {
           <div className="order-1 lg:col-span-2">
             <div
               className="aspect-[16/10] w-full rounded-2xl border border-border shadow-md"
-              style={{ 
-                background: event.image ? `url(${event.image}) center/cover` : "linear-gradient(135deg, #003366, #1E293B)" 
-              }}
+              style={{ background: toBackground(event.image) }}
               role="img"
               aria-label={event.title}
             />
