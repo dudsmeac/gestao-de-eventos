@@ -116,7 +116,6 @@ export default function ConfigPage() {
                     <div className="flex flex-col sm:flex-row items-start gap-4">
                         <ShieldAlert className="mt-1 size-6 shrink-0 text-destructive" />
                         <div className="flex-1">
-                            <h2 className="text-lg font-bold text-destructive">Zona de Perigo</h2>
                             <p className="mt-1 text-sm text-muted-foreground">
                                 Ao excluir sua conta você perderá acesso aos seus ingressos, histórico de inscrições
                                 e certificados emitidos. Esta ação é irreversível.

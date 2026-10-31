@@ -12,7 +12,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/85 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-9xl items-center gap-4 px-4 sm:px-6">
         <Link href="/" className="text-xl font-bold tracking-tight text-primary">
           SNCTZO
         </Link>
@@ -28,7 +28,6 @@ export function Header() {
         <div className="ml-auto flex items-center gap-2 sm:gap-4">
           {user ? (
             <>
-              {/* Lógica do Lovable resgatada: O link 'Meus Eventos' só aparece para Gestores */}
               {user.role === "GESTOR" && (
                 <Link
                   href="/gestor/eventos"

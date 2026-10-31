@@ -10,7 +10,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+    <section className="mx-auto max-w-6xl px-4 py-7 sm:px-6 sm:py-9">
       <div className="mb-2 text-center">
         <span className="inline-block rounded-full bg-accent/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
           SNCTZO 2026

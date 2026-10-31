@@ -31,15 +31,14 @@ export function ProfileDropdown({ user }: { user: User }) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-64">
         <DropdownMenuLabel className="flex flex-col gap-0.5 py-2">
-          <span className="truncate text-sm font-semibold text-foreground">{user.name}</span>
-          <span className="truncate text-xs font-normal text-muted-foreground">{user.email}</span>
-
           {/* Selo visual para identificar Gestores */}
           {user.role === "GESTOR" && (
             <span className="mt-1 inline-flex w-fit rounded-full bg-accent/25 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
               Gestor
             </span>
           )}
+          <span className="truncate text-sm font-semibold text-foreground">{user.name}</span>
+          <span className="truncate text-xs font-normal text-muted-foreground">{user.email}</span>
         </DropdownMenuLabel>
 
         <DropdownMenuSeparator />
